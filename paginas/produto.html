@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produto | Bulbe</title>
+    <link rel="stylesheet" href="/assets/style-produto.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  
+
+  <body>
+
+    <div class="fundoRedi off">
+        <div class="redirecionamento">
+          <img class="logoRedi" src="/assets/img/logo-bulbe-dark.png" alt="logo">
+          <h1 class="textoRedi">Você será redirecionado para o parceiro para finalizar a compra. Deseja continuar? </h1>
+          <div class="botoes">
+            <button id="nao">Não</button>
+            <a id="link-afiliado" href="#" target="_blank">
+              <button id="sim">Sim</button>
+            </a>
+          </div>
+        </div>
+    </div>
+
+
+    <div id="fundo" class="">
+
+      <header>
+      <div class="parte-superior">
+        <div class="itens-header">
+            <div class="icon-seta">
+              <img src="/assets/img/corner-up-left.png" alt="Voltar" id="seta" />
+            </div>
+          <a href="/index.html">
+            <div class="logo-bulbe">
+              <img src="/assets/img/bulbe-shop.svg" alt="Logo Bulbe" id="bulbe" />
+            </div>
+          </a>
+          <div class="sino-e-avatar">
+            <a href="/paginas/favoritos.html">
+              <div class="icon-sino">
+                <img src="/assets/img/bookmark.svg" alt="Favoritos" id="sino" />
+              </div>
+            </a>
+            <div class="icon-user">
+              <img src="/assets/img/Avatar.png" alt="Usuário" id="avatar" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<div class="headerspace"></div>
+
+    <main>
+      <div class="nome-e-imgs">
+        <div class="nome">
+          <h3 id="nome-produto">Carregando...</h3>
+        </div>
+
+        <div class="img-maior-setas">
+          <!-- <img src="/assets/img/arrow-narrow-left.png" alt="Anterior" id="seta-esq" /> -->
+          <div class="foto-maior">
+            <img id="foto-principal" src="" alt="Imagem principal do produto" />
+          </div>
+          <!-- <img src="/assets/img/arrow-narrow-right.png" alt="Próximo" id="seta-dir" /> -->
+        </div>
+
+        <!-- <div class="imgs-menores">
+          <div class="imagenzinhas">
+            <div id="foto-menor-1" class="botao-foto">
+              <img src="/assets/img/image-2.png" alt="" class="foto-menor" />
+            </div>
+            <div id="foto-menor-2" class="botao-foto">
+              <img src="/assets/img/image-3.png" alt="" class="foto-menor" />
+            </div>
+            <div id="foto-menor-3" class="botao-foto">
+              <img src="/assets/img/image-4.png" alt="" class="foto-menor" />
+            </div>
+            <div id="foto-menor-4" class="botao-foto">
+              <img src="/assets/img/image-5.png" alt="" class="foto-menor" />
+            </div>
+          </div>
+        </div>-->
+      </div>
+
+      <div class="descricao-geral">
+        <div class="marca-e-avaliacao">
+            <div class="estrelas" id="avaliacao-produto">
+            </div>
+          
+          <div class="marca">
+            <img id="logo-marca" src="/assets/img/image-6.png" alt="Marca" />
+          </div>
+        </div>
+
+        <div class="specs">
+          <h4 id="descricao-produto"></h4>
+        </div>
+
+        <div class="preco">
+          <h1 id="preco-produto"></h1>
+          <h4 id="parcelamento-produto"></h4>
+        </div>
+
+        <div class="botao-e-bookmark">
+          <div class="botao-final">  
+          <button id="buttonPop">Ir para o site</button>
+          </div>
+          <div class="bookmark">
+            <img src="/assets/img/Component.png" alt="Favoritar" />
+          </div>
+        </div>
+      </div>
+      <div class="comentario">
+        <div id="top">
+          <h1> Avaliação do produto</h1>
+          <button id="abrir">Adicionar avalição</button>
+        </div>
+        <div id="form">
+
+          <div>
+            <label for="name">Seu nome</label>
+          <input type="text" name="name" id="name" placeholder="" />
+          </div>
+          
+
+
+          <div>
+           <label for="stars">Sua nota</label>
+          <div id="stars">
+            <button class="star" value="1"></button>
+            <button class="star" value="2"></button>
+            <button class="star" value="3"></button>
+            <button class="star" value="4"></button>
+            <button class="star" value="5"></button>
+          </div> 
+          </div>
+          
+
+          <div>
+            <label for="comenta">Seu Comentario</label>
+          <input type="text" name="comenta" id="comenta" placeholder="" />
+          </div>
+          
+
+          <button id="enviar">Enviar</button>
+        </div>
+        <div id="analises">
+          <div class="avalia">
+          </div>
+
+
+
+
+
+        </div>
+
+
+      </div>
+      
+    </main>
+
+     </div><!-- fim do blur -->
+
+
+     
+    <script src="/scripts/produto.js"></script>
+  </body>
+</html>
