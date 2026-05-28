@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Admin — Bulbe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style-admin.css" />
+</head>
+<body>
+
+<header>
+  <a href="/index.html">
+    <img src="/assets/img/bulbe-shop.svg" alt="Bulbe" id="logo-admin" />
+  </a>
+  <span id="nome-admin"></span>
+  <button id="btn-sair">Sair</button>
+</header>
+
+<!-- Acesso negado -->
+<div id="acesso-negado">
+  <div class="negado-box">
+    <h2>🚫 Acesso restrito</h2>
+    <p>Você precisa estar logado como <strong>admin</strong> para acessar este painel.</p>
+    <a href="/paginas/login.html" class="btn-primario">Ir para o login</a>
+  </div>
+</div>
+
+<!-- Conteúdo admin -->
+<div id="conteudo-admin" style="display:none">
+
+  <nav class="abas">
+    <button class="aba ativa" data-aba="produtos">📦 Produtos</button>
+    <button class="aba" data-aba="afiliados">🏪 Afiliados</button>
+    <button class="aba" data-aba="api">⚙️ API</button>
+    <button class="aba" data-aba="usuarios">👥 Usuários</button>
+  </nav>
+
+  <main>
+
+    <!-- ═══ ABA PRODUTOS ═══ -->
+    <div class="secao ativa" id="secao-produtos">
+
+      <div class="card-form">
+        <h2>➕ Novo Produto</h2>
+        <form id="form-produto">
+          <div class="grid-2">
+            <div class="campo full">
+              <label>Nome *</label>
+              <input type="text" id="p-nome" placeholder="Ex: Painel Solar 400W" required />
+            </div>
+            <div class="campo">
+              <label>Preço (R$) *</label>
+              <input type="number" id="p-preco" placeholder="1200.00" step="0.01" min="0.01" required />
+            </div>
+            <div class="campo">
+              <label>Categoria *</label>
+              <select id="p-categoria" required>
+                <option value="">Selecione...</option>
+                <option>Energia Solar</option>
+                <option>Casa Inteligente</option>
+                <option>Eletrônicos</option>
+                <option>Eletrodomésticos</option>
+                <option>Esporte e Lazer</option>
+                <option>Informática</option>
+                <option>Saúde</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label>Loja (afiliado) *</label>
+              <select id="p-loja" required>
+                <option value="">Carregando...</option>
+              </select>
+            </div>
+            <div class="campo full">
+              <label>Descrição</label>
+              <textarea id="p-descricao" placeholder="Descrição do produto..."></textarea>
+            </div>
+            <div class="campo">
+              <label>Imagem (nome do arquivo)</label>
+              <input type="text" id="p-imagem" placeholder="painel-400w.jpg" />
+            </div>
+            <div class="campo">
+              <label>Link afiliado</label>
+              <input type="url" id="p-link" placeholder="https://..." />
+            </div>
+          </div>
+          <button type="submit" class="btn-primario" id="btn-criar-produto">Cadastrar Produto</button>
+        </form>
+      </div>
+
+      <div class="card-form">
+        <h2>📦 Produtos cadastrados</h2>
+        <div id="lista-produtos"><p class="loading">Carregando produtos...</p></div>
+      </div>
+    </div>
+
+    <!-- ═══ ABA AFILIADOS ═══ -->
+    <div class="secao" id="secao-afiliados">
+
+      <div class="card-form">
+        <h2>➕ Novo Afiliado</h2>
+        <form id="form-afiliado">
+          <div class="grid-2">
+            <div class="campo">
+              <label>Nome *</label>
+              <input type="text" id="a-nome" placeholder="Ex: Shopee" required />
+            </div>
+            <div class="campo">
+              <label>Slug *</label>
+              <input type="text" id="a-slug" placeholder="Ex: shopee" required />
+            </div>
+            <div class="campo">
+              <label>Logo (nome do arquivo)</label>
+              <input type="text" id="a-logo" placeholder="icon-shopee.png" />
+            </div>
+            <div class="campo">
+              <label>Site *</label>
+              <input type="url" id="a-site" placeholder="https://shopee.com.br" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primario" id="btn-criar-afiliado">Cadastrar Afiliado</button>
+        </form>
+      </div>
+
+      <div class="card-form">
+        <h2>🏪 Afiliados cadastrados</h2>
+        <div id="lista-afiliados"><p class="loading">Carregando afiliados...</p></div>
+      </div>
+    </div>
+
+    <!-- ═══ ABA API ═══ -->
+    <div class="secao" id="secao-api">
+      <div class="card-form">
+        <h2>⚙️ Configuração da API</h2>
+
+        <div class="status-api">
+          <span id="indicador-status" class="indicador"></span>
+          <span id="texto-status">Verificando conexão...</span>
+        </div>
+
+        <div class="campo" style="margin-top: 20px">
+          <label>URL base da API</label>
+          <input type="url" id="api-url" placeholder="http://localhost:3000/api/v1" />
+        </div>
+
+        <div class="api-acoes">
+          <button class="btn-primario" id="btn-salvar-url">Salvar URL</button>
+          <button class="btn-secundario" id="btn-testar-url">Testar conexão</button>
+          <button class="btn-secundario" id="btn-resetar-url">Resetar padrão</button>
+        </div>
+
+        <div id="resultado-teste" class="resultado-teste" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- ═══ ABA USUÁRIOS ═══ -->
+    <div class="secao" id="secao-usuarios">
+      <div class="card-form">
+        <h2>👥 Usuários cadastrados</h2>
+        <div id="lista-usuarios"><p class="loading">Carregando usuários...</p></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Modal de edição de produto -->
+<div id="overlay">
+  <div id="modal-edicao">
+    <h2>✏️ Editar Produto</h2>
+    <input type="hidden" id="edit-id" />
+    <div class="grid-2">
+      <div class="campo full">
+        <label>Nome</label>
+        <input type="text" id="edit-nome" />
+      </div>
+      <div class="campo">
+        <label>Preço (R$)</label>
+        <input type="number" id="edit-preco" step="0.01" min="0.01" />
+      </div>
+      <div class="campo">
+        <label>Categoria</label>
+        <select id="edit-categoria">
+          <option>Energia Solar</option>
+          <option>Casa Inteligente</option>
+          <option>Eletrônicos</option>
+          <option>Eletrodomésticos</option>
+          <option>Esporte e Lazer</option>
+          <option>Informática</option>
+          <option>Saúde</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Imagem (nome do arquivo)</label>
+        <input type="text" id="edit-imagem" />
+      </div>
+      <div class="campo full">
+        <label>Descrição</label>
+        <textarea id="edit-descricao"></textarea>
+      </div>
+      <div class="campo full">
+        <label>Link afiliado</label>
+        <input type="url" id="edit-link" />
+      </div>
+    </div>
+    <div class="modal-acoes">
+      <button class="btn-cancelar" id="btn-cancelar-edicao">Cancelar</button>
+      <button class="btn-primario" id="btn-salvar-edicao">Salvar alterações</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script src="/scripts/api.js"></script>
+<script src="/scripts/admin.js"></script>
+</body>
+</html>
