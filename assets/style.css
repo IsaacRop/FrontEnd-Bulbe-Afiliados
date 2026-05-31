@@ -913,9 +913,164 @@ body, html {
     min-width: 260px;
     max-width: 260px;
     height: 184px;
-  } 
+  }
 
-  
 
-    
+
+
+}
+
+/* ═══════════════════════════════════════════════
+   WIDGET DE USUÁRIO (auth-header.js)
+═══════════════════════════════════════════════ */
+
+/* Ícone anônimo — não logado */
+.avatar-link-login {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-anonimo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  opacity: 0.55;
+  filter: brightness(3);
+  transition: opacity 0.2s;
+}
+
+.avatar-anonimo img:hover {
+  opacity: 0.9;
+}
+
+/* Círculo de iniciais — logado */
+.icon-user {
+  position: relative;
+}
+
+.avatar-usuario {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4c49d6, #0B08C4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+}
+
+.avatar-usuario:hover {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.5);
+}
+
+.avatar-iniciais {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Badge "A" de admin */
+.avatar-admin-badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 15px;
+  height: 15px;
+  background: #f1a240;
+  color: #08068D;
+  border-radius: 50%;
+  font-size: 0.55rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #08068D;
+}
+
+/* Dropdown */
+.avatar-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(8,6,141,0.15);
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+  animation: dropIn 0.18s ease;
+}
+
+.avatar-dropdown.aberto {
+  display: block;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.avatar-info {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #E8ECF0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.avatar-info strong {
+  font-size: 0.9rem;
+  color: #151A1E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar-info span {
+  font-size: 0.75rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.avatar-papel {
+  font-size: 0.7rem !important;
+  color: #08068D !important;
+  font-weight: 600 !important;
+  background: #EEF0FF;
+  border-radius: 4px;
+  padding: 2px 6px;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.avatar-menu-item {
+  display: block;
+  padding: 11px 16px;
+  font-size: 0.85rem;
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  transition: background 0.15s;
+}
+
+.avatar-menu-item:hover {
+  background: #F6F9F9;
+}
+
+.avatar-sair {
+  color: #d32f2f !important;
+  border-top: 1px solid #E8ECF0;
 }

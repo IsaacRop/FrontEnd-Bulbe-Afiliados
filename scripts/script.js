@@ -1,3 +1,8 @@
+// Guard: redireciona para login se não autenticado
+if (!api.getToken()) {
+  window.location.href = '/paginas/login.html';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const searchBar = document.getElementById("pesquisa");
   const container = document.getElementById("container-produtos-pesquisa");
