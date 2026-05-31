@@ -261,12 +261,17 @@ header{
     height: 100%;
     width: 100%;
     position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
-    
-    
+}
+
+/* Popup oculto — especificidade maior que .fundoRedi para não depender da ordem */
+.fundoRedi.off{
+    display: none !important;
 }
 
 .redirecionamento{
@@ -762,5 +767,18 @@ h3{
   .reviews-section {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  /* Popup de redirecionamento — não esticar na largura toda */
+  .redirecionamento {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    min-height: 269px;
+    padding: 28px;
+  }
+
+  .logoRedi {
+    width: 110px;
   }
 }

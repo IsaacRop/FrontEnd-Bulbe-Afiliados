@@ -49,20 +49,49 @@ const nao = document.getElementById("nao");
 const fundo = document.getElementById("fundo");
 const fundoRedi = document.getElementsByClassName("fundoRedi")[0];
 const buttonPop = document.getElementById("buttonPop");
+const redirecionamento = document.querySelector(".redirecionamento");
 
-if (nao) {
-  nao.addEventListener("click", () => {
-    fundo.classList.toggle("blur");
-    fundoRedi.classList.toggle("off");
-  });
+function abrirPopup() {
+  if (!fundoRedi) return;
+  fundoRedi.classList.remove("off");
+  if (fundo) fundo.classList.add("blur");
+}
+
+function fecharPopup() {
+  if (!fundoRedi) return;
+  fundoRedi.classList.add("off");
+  if (fundo) fundo.classList.remove("blur");
 }
 
 if (buttonPop) {
-  buttonPop.addEventListener("click", () => {
-    fundo.classList.toggle("blur");
-    fundoRedi.classList.toggle("off");
+  buttonPop.addEventListener("click", abrirPopup);
+}
+
+if (nao) {
+  nao.addEventListener("click", fecharPopup);
+}
+
+// "Sim" abre o parceiro em nova aba (<a target="_blank">) — fecha o popup na aba atual
+if (sim) {
+  sim.addEventListener("click", fecharPopup);
+}
+
+// Fechar ao clicar no fundo escuro (fora do card)
+if (fundoRedi) {
+  fundoRedi.addEventListener("click", (e) => {
+    if (e.target === fundoRedi) fecharPopup();
   });
 }
+
+// Evita que cliques dentro do card propaguem e fechem o popup
+if (redirecionamento) {
+  redirecionamento.addEventListener("click", (e) => e.stopPropagation());
+}
+
+// Fechar com a tecla Escape
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") fecharPopup();
+});
 
 
 // Funcionamento do botão de favoritos
