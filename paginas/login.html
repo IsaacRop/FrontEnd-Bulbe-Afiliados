@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Bulbe</title>
+  <link rel="stylesheet" href="/assets/style-login.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <header>
+    <div class="parte-superior">
+      <div class="itens-header">
+        <div class="icon-seta">
+          <img src="/assets/img/corner-up-left.png" alt="Voltar" id="seta" />
+        </div>
+        <a href="/index.html">
+          <div class="logo-bulbe">
+            <img src="/assets/img/bulbe-shop.svg" alt="Bulbe" id="bulbe" />
+          </div>
+        </a>
+        <div style="width: 28px;"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="login-card">
+      <h1>Bem-vindo à Bulbe</h1>
+      <p class="subtitulo">Acesse sua conta ou crie uma nova para favoritar produtos.</p>
+
+      <!-- Abas -->
+      <div class="tabs">
+        <button class="tab-btn ativa" id="tab-login" type="button">Entrar</button>
+        <button class="tab-btn" id="tab-cadastro" type="button">Cadastrar</button>
+      </div>
+
+      <!-- ── FORMULÁRIO DE LOGIN ── -->
+      <div class="form-panel ativo" id="painel-login">
+        <div class="msg-feedback" id="msg-login"></div>
+
+        <div class="campo">
+          <label for="login-email">E-mail</label>
+          <input
+            type="email"
+            id="login-email"
+            placeholder="seu@email.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="login-senha">Senha</label>
+          <input
+            type="password"
+            id="login-senha"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button class="btn-principal" id="btn-login" type="button">
+          Entrar
+        </button>
+      </div>
+
+      <!-- ── FORMULÁRIO DE CADASTRO ── -->
+      <div class="form-panel" id="painel-cadastro">
+        <div class="msg-feedback" id="msg-cadastro"></div>
+
+        <div class="campo">
+          <label for="cad-nome">Nome completo</label>
+          <input
+            type="text"
+            id="cad-nome"
+            placeholder="Seu nome"
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="cad-email">E-mail</label>
+          <input
+            type="email"
+            id="cad-email"
+            placeholder="seu@email.com"
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="cad-senha">Senha</label>
+          <input
+            type="password"
+            id="cad-senha"
+            placeholder="Mínimo 6 caracteres"
+            autocomplete="new-password"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="cad-confirma">Confirmar senha</label>
+          <input
+            type="password"
+            id="cad-confirma"
+            placeholder="Repita a senha"
+            autocomplete="new-password"
+          />
+        </div>
+
+        <button class="btn-principal" id="btn-cadastro" type="button">
+          Criar conta
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="/scripts/api.js"></script>
+  <script src="/scripts/login.js"></script>
+</body>
+
+</html>

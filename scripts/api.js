@@ -49,8 +49,12 @@ async function request(path, options = {}) {
 
   if (response.status === 401) {
     encerrarSessao();
-    window.location.href = '/paginas/login.html';
-    return null;
+    // Não redireciona se já estamos na página de login (evita loop infinito)
+    if (!window.location.pathname.includes('login')) {
+      window.location.href = '/paginas/login.html';
+      return null;
+    }
+    return response;
   }
 
   return response;
