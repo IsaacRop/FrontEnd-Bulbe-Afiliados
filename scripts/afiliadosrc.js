@@ -56,12 +56,7 @@ function criarCardPrincipal(produto) {
             <div class="botao-produto">Ver Produto</div>
           </div>
         </div>
-        <div class="info">
-          <h1 class="preco">R$ ${produto.preco.toFixed(2)}</h1>
-          <div class="botao-produto">Ver Produto</div>
-        </div>
       </div>
-    </div>
     </a>
   `;
 }
