@@ -139,28 +139,30 @@ h3{
 .descricao-geral{
     width: 90%;
     max-width: 590px;
-    min-height: 350px;
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--cor-div-de-baixo);
-    border-radius: 20px;
+    align-items: stretch;
+    gap: 18px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--muted-dark);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
     margin-top: 15px;
+    padding: 22px;
 }
 
 
 
 
 .marca-e-avaliacao{
-    height: 15%;
-    width: 90%;
+    height: auto;
+    width: 100%;
     display: flex;
-    justify-content: space-between; /* mudar quando adicionar as estrelas */
+    justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
-    
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--muted-dark);
 }
 .avaliacao{
     display: flex;
@@ -176,62 +178,85 @@ h3{
 #preco-produto{
     color: var(--cor-preco);
     font-size: 40px;
+    font-weight: 700;
 }
 
 .marca{
     display: flex;
     align-items: center;
-    height: 100%;
+    justify-content: flex-end;
+    height: auto;
     width: auto;
-
+    padding: 4px 10px;
+    background-color: var(--muted);
+    border: 1px solid var(--muted-dark);
+    border-radius: 8px;
 }
 
 .specs {
-    width: 90%;
-    font-size: 20px;
+    width: 100%;
+    font-size: 18px;
 }
 
 .descricao-geral h4{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
     color: var(--cor-subtitulos);
     font-weight: 500;
+    line-height: 1.5;
 }
 
 .botao-final{
-    width: 70%;
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .botao-e-bookmark{
     display: flex;
-    width: 90%;
+    width: 100%;
+    gap: 12px;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
-
-    
-    
 }
 
 #buttonPop{
     background-color: var(--cor-header-botao);
-    color: var(--cor-fundo);
-    font-size: larger;
-    font-weight: 300;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
     font-family: 'Poppins';
     width: 100%;
     max-width: 300px;
     height: 50px;
     border-radius: 8px;
     border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#buttonPop:hover{
+    background-color: var(--blue);
 }
 
 .bookmark{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--muted-dark);
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--muted);
+    transition: var(--transition);
+}
+
+.bookmark:hover{
+    background-color: var(--muted-dark);
 }
 
 .preco{
@@ -239,8 +264,11 @@ h3{
 }
 
 #logo-marca{
-    height: 100%;
+    max-height: 40px;
+    max-width: 90px;
     width: auto;
+    height: auto;
+    object-fit: contain;
 }
 
 header{
@@ -343,22 +371,30 @@ body, html {
 
 #avaliacao-produto{
     display: flex;
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
     align-items: center;
+    gap: 6px;
 }
 
 #avaliacao-produto h1{
-    font-size: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cor-subtitulos);
 }
 
 #avaliacao-produto img{
-    height: 40%;
+    height: 16px;
     width: auto;
 }
 
+#avaliacao-produto p{
+    font-size: 13px;
+    color: var(--text-lighter);
+}
+
 #analises{
-    width: 90%;
+    width: 100%;
 }
 
 .avalia {
@@ -441,22 +477,22 @@ body, html {
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    background-color: var(--cor-div-de-baixo);
-    border-radius: 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--muted-dark);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-lg);
     margin-top: 15px;
+    padding: 8px 22px 22px;
 }
 
 #top{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 80px;
     align-items: center;
     justify-content: space-between;
-    border-bottom: var(--cor-subtitulos) solid 1px;
-
-
+    border-bottom: var(--muted-dark) solid 1px;
 }
 
 #abrir{
@@ -740,14 +776,17 @@ h3{
   }
 
   .descricao-geral {
-    width: 100%;
+    flex: 1;
+    width: auto;
     max-width: none;
     margin-top: 0;
   }
 
   .comentario {
-    width: 100%;
+    flex: 1;
+    width: auto;
     max-width: none;
+    margin-top: 0;
   }
 
   h3 {
