@@ -275,10 +275,23 @@ a{
   display: flex;
   justify-content: center;
   align-items: center; 
-  width: 380px;
-  height: 224px;   
+  width: 100%;
+  max-width: 380px;   
   border-radius: 20px;
 } 
+
+.imagem-banner picture{
+  display: block;
+  width: 100%;
+}
+
+.imagem-banner img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  object-fit: cover;
+}
 
 .titulo{
   display: flex;
