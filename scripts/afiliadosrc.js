@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Cria o HTML para os itens grandes do carrossel do topo
 function criarCardPrincipal(produto) {
-  // Removi o target="_blank" da linha abaixo
+  const link = `/paginas/produto.html?id=${produto.id}`;
   return `
-    <a href="${produto.pagina}"> 
+    <a href="${link}">
     <div class="card-produto big">
       <img src="/assets/img/${produto.imagem}" alt="imagem-${produto.id}">
-      
+
       <div class="info-card">
         <div class="nomeNota">
           <h1 class="nome">${produto.nome}</h1>
@@ -40,9 +40,9 @@ function criarCardPrincipal(produto) {
 
   // Cria o HTML para os itens pequenos da lista de baixo
   function criarCardOutros(produto) {
-    // Reutilizei a estrutura .card-produto que você já tem na home
+    const link = `/paginas/produto.html?id=${produto.id}`;
     return `
-      <a href="${produto.pagina}" target="_blank">
+      <a href="${link}">
       <div class="card-produto small">
         <div class="imagem-card">
         <img src="/assets/img/${produto.imagem}" alt="imagem-${produto.id}">

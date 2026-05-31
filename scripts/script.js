@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function criarCard(produto) {
     const card = document.createElement("a");
     card.classList.add("card-produto");
-    card.href = produto.pagina;
+    card.href = `/paginas/produto.html?id=${produto.id}`;
     card.innerHTML = `
       <div class="imagem-card" style="background-image: url('${produto.imagem}')"></div>
       <div class="info-card">
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div>
           <div class="preco-produto-card">R$ ${produto.preco.toFixed(2)}</div>
-          <a href="${produto.pagina || '#'}" class="botao-produto">Ver Produto</a>
+          <a href="/paginas/produto.html?id=${produto.id}" class="botao-produto">Ver Produto</a>
         </div>
       </div>
     `;
