@@ -340,7 +340,7 @@ button{
 
 .nome-produto{
     font-size: 15px;
-    
+
 }
 
 .preco{
@@ -361,4 +361,68 @@ button{
     width: 120px;
     height: 120px;
 }
+}
+
+/* ═══════════════════════════════════════════════
+   DESKTOP (≥ 1025px)
+═══════════════════════════════════════════════ */
+@media (min-width: 1025px) {
+
+  .itens-header {
+    padding: 0 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sino-e-avatar {
+    width: auto;
+    gap: 24px;
+  }
+
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 80px 60px;
+    width: 100%;
+  }
+
+  .produto {
+    width: 720px;
+    height: 280px;
+    padding: 30px 40px;
+    gap: 40px;
+  }
+
+  .fotoproduto {
+    width: 220px;
+    height: 220px;
+  }
+
+  .nome-produto {
+    font-size: 22px;
+  }
+
+  .preco {
+    font-size: 28px;
+  }
+
+  button {
+    width: 210px;
+    height: 52px;
+    font-size: 20px;
+    border-radius: 26px;
+  }
+
+  #classe {
+    font-size: 42px;
+  }
+
+  .categoria {
+    height: 100px;
+  }
+
+  .area-produtos {
+    padding-bottom: 60px;
+  }
 }

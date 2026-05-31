@@ -6,10 +6,10 @@
 }
 
 body{
-    max-width: (100vw);
+    width: 100%;
     height: auto;
     text-decoration: none;
-} 
+}
 
 header {
   position: fixed;
@@ -423,6 +423,68 @@ body, html {
   overflow-x: hidden;
 }
 
+/* ═══════════════════════════════════════════════
+   DESKTOP (≥ 1025px)
+═══════════════════════════════════════════════ */
+@media (min-width: 1025px) {
+
+  .itens-header {
+    padding: 0 80px;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sino-e-avatar {
+    width: auto;
+    gap: 24px;
+  }
+
+  main {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .scroll {
+    border-radius: 16px;
+  }
+
+  .nomeAfiliado {
+    font-size: 32px;
+    margin-left: 40px;
+  }
+
+  .nomeCategoria {
+    font-size: 22px;
+    margin-left: 40px;
+  }
+
+  .card-produto.big {
+    width: 440px;
+    height: 400px;
+  }
+
+  .card-produto {
+    width: 380px;
+    height: 230px;
+  }
+
+  .botao-produto {
+    width: 130px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .nome-empresa {
+    font-size: 36px;
+  }
+
+  .arealogo {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
 @media (min-width: 600px) and (max-width: 1024px){
 
 .itens-header {
@@ -558,8 +620,8 @@ body, html {
 }
 
 .card-produto.big{
-  height: 420px;
-  width: 500px;
+  height: 340px;
+  width: 280px;
   padding: 10px;
 }
 .card-produto.small{
