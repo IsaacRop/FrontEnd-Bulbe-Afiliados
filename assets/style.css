@@ -431,23 +431,23 @@ a{
   text-align: center;
   transition: all 0.3s ease;
   
-  /* Padrão: Opaco */
-  opacity: 0.6;
-}
-
-.icone-texto-categoria.ativo {
+  /* Padrão: ícone simples, totalmente visível */
   opacity: 1;
+  cursor: pointer;
 }
 
-.icone-texto-categoria.ativo .fundo-imagem-icone {
-  /* Ativo: Retângulo largo */
+/* Efeito ativado APENAS no hover/foco do item */
+.icone-texto-categoria:hover .fundo-imagem-icone,
+.icone-texto-categoria:focus-within .fundo-imagem-icone {
+  /* Hover: Retângulo largo */
   width: 160px; /* Sua largura desejada */
   height: 70px; /* Mantém a altura para um visual mais limpo */
   border-radius: 35px;
 }
 
-.icone-texto-categoria.ativo .nome-icone {
-  /* Ativo: Visível e com altura */
+.icone-texto-categoria:hover .nome-icone,
+.icone-texto-categoria:focus-within .nome-icone {
+  /* Hover: Visível e com altura */
   opacity: 1;
   height: 1.2em; /* Altura suficiente para uma linha de texto */
 }
@@ -846,12 +846,14 @@ body, html {
   font-size: 15px;
 }
 
-.icone-texto-categoria.ativo .fundo-imagem-icone {
+.icone-texto-categoria:hover .fundo-imagem-icone,
+.icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 260px;
     height: 85px;
   }
 
-.icone-texto-categoria.ativo .nome-icone {
+.icone-texto-categoria:hover .nome-icone,
+.icone-texto-categoria:focus-within .nome-icone {
     font-size: 20px;
   }
 
@@ -916,7 +918,8 @@ body, html {
   margin-bottom: -5px;
   }
 
-  .icone-texto-categoria.ativo .fundo-imagem-icone {
+  .icone-texto-categoria:hover .fundo-imagem-icone,
+  .icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 130px;
     height: 60px;
   }
@@ -1193,7 +1196,8 @@ body, html {
     height: 78px;
   }
 
-  .icone-texto-categoria.ativo .fundo-imagem-icone {
+  .icone-texto-categoria:hover .fundo-imagem-icone,
+  .icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 200px;
     height: 78px;
   }
