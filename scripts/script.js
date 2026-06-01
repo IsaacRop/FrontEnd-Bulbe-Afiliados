@@ -27,14 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2️⃣ Função para criar o card do produto
   function criarCard(produto) {
     const card = document.createElement("a");
-    card.classList.add("card-produto");
+    card.classList.add("smallItem");
     card.href = `/paginas/produto.html?id=${produto.id}`;
     card.innerHTML = `
-      <div class="imagem-card" style="background-image: url('${produto.imagem}')"></div>
+      <div class="imagem-card">
+        <img src="/assets/img/${produto.imagem}" alt="${produto.nome}">
+      </div>
       <div class="info-card">
         <div class="nome-produto-card">${produto.nome}</div>
-        <div class="preco-produto-card">R$ ${produto.preco.toFixed(2)}</div>
+        <div class="preco-produto-card">R$ ${Number(produto.preco).toFixed(2)}</div>
       </div>
+      <div class="botao-produto">Ver Produto</div>
     `;
     return card;
   }
@@ -68,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => (container.style.opacity = "1"), 10);
 
     const filtrados = produtos.filter(p =>
-      p.nome.toLowerCase().includes(texto) ||
-      p.descricao.toLowerCase().includes(texto)
+      (p.nome || "").toLowerCase().includes(texto) ||
+      (p.descricao || "").toLowerCase().includes(texto)
     );
 
     renderizarProdutos(filtrados);
