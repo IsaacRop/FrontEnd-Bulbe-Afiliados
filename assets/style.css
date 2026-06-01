@@ -382,7 +382,9 @@ a{
   padding: 30px 16px; /* Espaço nas bordas para o 1º e último item */
   
   /* Importante para o 'scroll-snap' funcionar com o padding */
-  width: max-content; 
+  width: max-content;
+  /* Centraliza quando cabe na tela; no mobile as margens auto viram 0 e o scroll continua */
+  margin: 0 auto;
 }
 
 /* O ÍCONE (Estado Padrão / Inativo) */
