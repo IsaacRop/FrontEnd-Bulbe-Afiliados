@@ -275,10 +275,23 @@ a{
   display: flex;
   justify-content: center;
   align-items: center; 
-  width: 380px;
-  height: 224px;   
+  width: 100%;
+  max-width: 380px;   
   border-radius: 20px;
 } 
+
+.imagem-banner picture{
+  display: block;
+  width: 100%;
+}
+
+.imagem-banner img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+  object-fit: cover;
+}
 
 .titulo{
   display: flex;
@@ -369,7 +382,9 @@ a{
   padding: 30px 16px; /* Espaço nas bordas para o 1º e último item */
   
   /* Importante para o 'scroll-snap' funcionar com o padding */
-  width: max-content; 
+  width: max-content;
+  /* Centraliza quando cabe na tela; no mobile as margens auto viram 0 e o scroll continua */
+  margin: 0 auto;
 }
 
 /* O ÍCONE (Estado Padrão / Inativo) */
@@ -418,23 +433,23 @@ a{
   text-align: center;
   transition: all 0.3s ease;
   
-  /* Padrão: Opaco */
-  opacity: 0.6;
-}
-
-.icone-texto-categoria.ativo {
+  /* Padrão: ícone simples, totalmente visível */
   opacity: 1;
+  cursor: pointer;
 }
 
-.icone-texto-categoria.ativo .fundo-imagem-icone {
-  /* Ativo: Retângulo largo */
+/* Efeito ativado APENAS no hover/foco do item */
+.icone-texto-categoria:hover .fundo-imagem-icone,
+.icone-texto-categoria:focus-within .fundo-imagem-icone {
+  /* Hover: Retângulo largo */
   width: 160px; /* Sua largura desejada */
   height: 70px; /* Mantém a altura para um visual mais limpo */
   border-radius: 35px;
 }
 
-.icone-texto-categoria.ativo .nome-icone {
-  /* Ativo: Visível e com altura */
+.icone-texto-categoria:hover .nome-icone,
+.icone-texto-categoria:focus-within .nome-icone {
+  /* Hover: Visível e com altura */
   opacity: 1;
   height: 1.2em; /* Altura suficiente para uma linha de texto */
 }
@@ -589,20 +604,51 @@ a{
 
 #container-produtos-pesquisa .smallItem {
   width: 100%;
+  height: auto;
   background-color: var(--cor-fundo-branco);
   border: 1px solid var(--cor-borda-sessao-card);
   border-radius: 10px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
   padding: 8px;
+  text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #container-produtos-pesquisa .smallItem:hover {
   transform: translateY(-2px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+#container-produtos-pesquisa .imagem-card {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+#container-produtos-pesquisa .imagem-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#container-produtos-pesquisa .info-card {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
 }
 
 
@@ -612,7 +658,10 @@ a{
   font-size: 15px;
   font-weight: 500;
   color: var(--cor-titulos);
-  
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -632,6 +681,7 @@ a{
 #container-produtos-pesquisa .botao-produto {
   width: 80px;
   height: 26px;
+  flex-shrink: 0;
   background-color: var(--cor-header-botao);
   color: var(--cor-main);
   border-radius: 20px;
@@ -833,12 +883,14 @@ body, html {
   font-size: 15px;
 }
 
-.icone-texto-categoria.ativo .fundo-imagem-icone {
+.icone-texto-categoria:hover .fundo-imagem-icone,
+.icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 260px;
     height: 85px;
   }
 
-.icone-texto-categoria.ativo .nome-icone {
+.icone-texto-categoria:hover .nome-icone,
+.icone-texto-categoria:focus-within .nome-icone {
     font-size: 20px;
   }
 
@@ -903,7 +955,8 @@ body, html {
   margin-bottom: -5px;
   }
 
-  .icone-texto-categoria.ativo .fundo-imagem-icone {
+  .icone-texto-categoria:hover .fundo-imagem-icone,
+  .icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 130px;
     height: 60px;
   }
@@ -1180,7 +1233,8 @@ body, html {
     height: 78px;
   }
 
-  .icone-texto-categoria.ativo .fundo-imagem-icone {
+  .icone-texto-categoria:hover .fundo-imagem-icone,
+  .icone-texto-categoria:focus-within .fundo-imagem-icone {
     width: 200px;
     height: 78px;
   }

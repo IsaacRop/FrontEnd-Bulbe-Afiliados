@@ -99,7 +99,11 @@
     <div class="corpo-principal">
       <div class="titulo">Ofertas na Bulbe</div>
       <div class="imagem-banner">
-        <img class="imagem-banner" src="./assets/img/Banner1.png" alt="">
+        <picture>
+          <!-- Banner largo apenas no desktop/web; mobile e tablet mantêm o Banner1 -->
+          <source media="(min-width: 1025px)" srcset="./assets/img/banner-web.png" />
+          <img src="./assets/img/Banner1.png" alt="Aproveite nossos produtos selecionados — Casa, Energia e Lazer" loading="lazy" />
+        </picture>
       </div>
     </div>
     <!-- <div class="bolinhas-de-selecao">
