@@ -187,9 +187,8 @@ if (botaoVoltar) {
 }
 
 
-// Sistema de avaliações (localStorage — não integrado à API ainda)
+// Sistema de avaliações — integrado à API de comentários
 document.addEventListener("DOMContentLoaded", () => {
-  const STORAGE_KEY = "avaliacoes_bulbe";
   const urlParams = new URLSearchParams(window.location.search);
   const PRODUTO_ID = urlParams.get("id");
 
@@ -197,24 +196,19 @@ document.addEventListener("DOMContentLoaded", () => {
     btnAbrir:          document.getElementById("abrir"),
     formContainer:     document.getElementById("form"),
     containerAnalises: document.getElementById("analises"),
-    starsContainer:    document.getElementById("stars"),
     stars:             document.querySelectorAll(".star"),
     btnEnviar:         document.getElementById("enviar"),
-    inputNome:         document.getElementById("name"),
     inputComentario:   document.getElementById("comenta"),
   };
 
-  if (!ui.btnAbrir) return;
+  if (!ui.btnAbrir || !PRODUTO_ID) return;
 
   let notaSelecionada = 0;
-
-  const getAvaliacoes  = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } };
-  const saveAvaliacoes = (lista) => localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
 
   const toggleFormulario = () => {
     const isFlex = ui.formContainer.style.display === "flex";
     ui.formContainer.style.display = isFlex ? "none" : "flex";
-    ui.btnAbrir.textContent = isFlex ? "Adicionar avaliação" : "Cancelar";
+    ui.btnAbrir.textContent = isFlex ? "Adicionar avalição" : "Cancelar";
   };
 
   const atualizarEstrelas = (valor) => {
@@ -222,44 +216,70 @@ document.addEventListener("DOMContentLoaded", () => {
     ui.stars.forEach((s) => s.classList.toggle("gold", parseInt(s.value) <= valor));
   };
 
-  const criarCardHTML = (av) => {
+  // criadoEm vem do SQLite como "YYYY-MM-DD HH:MM:SS" em UTC
+  const formatarData = (criadoEm) => {
+    const data = new Date(criadoEm.replace(" ", "T") + "Z");
+    return isNaN(data) ? "" : data.toLocaleDateString("pt-BR");
+  };
+
+  const criarCardHTML = (comentario) => {
     const div = document.createElement("div");
     div.classList.add("avalia");
-    const nomeEl       = document.createElement("h3"); nomeEl.textContent = av.nome;
-    const dataEl       = document.createElement("h5"); dataEl.textContent = av.data;
-    const comentarioEl = document.createElement("h4"); comentarioEl.textContent = av.texto;
+    const nomeEl       = document.createElement("h3"); nomeEl.textContent = comentario.usuarioNome;
+    const dataEl       = document.createElement("h5"); dataEl.textContent = formatarData(comentario.criadoEm);
+    const comentarioEl = document.createElement("h4"); comentarioEl.textContent = comentario.conteudo;
     const headerDiv    = document.createElement("div"); headerDiv.classList.add("nome-tempo");
     headerDiv.appendChild(nomeEl); headerDiv.appendChild(dataEl);
     const notaDiv = document.createElement("div"); notaDiv.classList.add("nota");
-    notaDiv.style.color = "gold"; notaDiv.textContent = "⭐".repeat(av.nota);
+    notaDiv.style.color = "gold";
+    notaDiv.textContent = comentario.nota ? "⭐".repeat(comentario.nota) : "";
     div.appendChild(headerDiv); div.appendChild(notaDiv); div.appendChild(comentarioEl);
     return div;
   };
 
-  const carregarAvaliacoesNaTela = () => {
+  const carregarComentarios = async () => {
     ui.containerAnalises.innerHTML = "";
-    const doProduto = getAvaliacoes().filter(a => a.produtoId === PRODUTO_ID);
-    if (doProduto.length === 0) {
+    const res = await api.get('/comentarios?produtoId=' + PRODUTO_ID);
+    if (!res || !res.ok) {
+      ui.containerAnalises.innerHTML = "<p style='padding:20px;color:#666'>Erro ao carregar avaliações.</p>";
+      return;
+    }
+    const { data: comentarios } = await res.json();
+    if (!comentarios || comentarios.length === 0) {
       ui.containerAnalises.innerHTML = "<p style='padding:20px;color:#666'>Seja o primeiro a avaliar!</p>";
       return;
     }
-    doProduto.forEach(av => ui.containerAnalises.prepend(criarCardHTML(av)));
+    comentarios.forEach(c => ui.containerAnalises.appendChild(criarCardHTML(c)));
   };
 
-  const processarEnvio = () => {
-    const nome  = ui.inputNome.value.trim();
+  const processarEnvio = async () => {
+    if (!api.getToken()) {
+      window.location.href = '/paginas/login.html';
+      return;
+    }
+
     const texto = ui.inputComentario.value.trim();
-    if (!nome || !texto || notaSelecionada === 0) { alert("Preencha todos os campos e selecione uma nota!"); return; }
-    const novaAvaliacao = { id: Date.now(), produtoId: PRODUTO_ID, nome, texto, nota: notaSelecionada, data: new Date().toLocaleDateString("pt-BR") };
-    const lista = getAvaliacoes(); lista.push(novaAvaliacao); saveAvaliacoes(lista);
-    ui.containerAnalises.prepend(criarCardHTML(novaAvaliacao));
+    if (!texto || notaSelecionada === 0) { alert("Escreva um comentário e selecione uma nota!"); return; }
+
+    const res = await api.post('/comentarios', { produtoId: Number(PRODUTO_ID), conteudo: texto, nota: notaSelecionada });
+    if (!res || !res.ok) {
+      const corpo = res ? await res.json().catch(() => ({})) : {};
+      alert(corpo.erro || "Erro ao enviar avaliação.");
+      return;
+    }
+
+    const { data: novoComentario } = await res.json();
     const msgVazia = ui.containerAnalises.querySelector("p");
     if (msgVazia) msgVazia.remove();
-    ui.inputNome.value = ""; ui.inputComentario.value = ""; atualizarEstrelas(0); toggleFormulario();
+    ui.containerAnalises.prepend(criarCardHTML(novoComentario));
+
+    ui.inputComentario.value = "";
+    atualizarEstrelas(0);
+    toggleFormulario();
   };
 
   ui.btnAbrir.addEventListener("click", toggleFormulario);
   ui.btnEnviar.addEventListener("click", processarEnvio);
   ui.stars.forEach(star => star.addEventListener("click", e => atualizarEstrelas(parseInt(e.target.value))));
-  carregarAvaliacoesNaTela();
+  carregarComentarios();
 });
